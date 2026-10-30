@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="304" viewBox="0 0 480 304" role="img" aria-labelledby="title desc">
+  <title id="title">Hi, I'm Haozheng.</title>
+  <desc id="desc">Building useful tools. Exploring how agents work. Call tools, run, inspect, and iterate.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M1 1 6 4 1 7" fill="none" stroke="#0969da" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect width="480" height="304" fill="#ffffff"/>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="0" y="57" fill="#1f2328" font-size="44" font-weight="700" letter-spacing="-1.5">Hi, I'm Haozheng.</text>
+    <g fill="#59636e" font-size="25">
+      <text x="1" y="104">Building useful tools.</text>
+      <text x="1" y="140">Exploring how agents work.</text>
+    </g>
+    <g fill="none" stroke="#c8d1da" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)">
+      <path d="M58 225H150"/>
+      <path d="M186 225H278"/>
+      <path d="M314 225H406"/>
+      <path d="M426 245V260Q426 276 410 276H54Q38 276 38 260V245"/>
+    </g>
+    <g fill="#0969da">
+      <circle cx="38" cy="225" r="5"/>
+      <circle cx="168" cy="225" r="5"/>
+      <circle cx="296" cy="225" r="7"/>
+      <circle cx="426" cy="225" r="5"/>
+    </g>
+    <g fill="#59636e" font-size="18" text-anchor="middle">
+      <text x="38" y="201">Call tools</text>
+      <text x="168" y="201">Run</text>
+      <text x="296" y="201">Inspect</text>
+      <text x="426" y="201">Iterate</text>
+    </g>
+  </g>
+</svg>
