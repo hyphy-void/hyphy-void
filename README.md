@@ -24,7 +24,7 @@ Resumable transfers, optional passwords, and download limits keep sharing
 practical. Built with React, TypeScript, Cloudflare Workers, D1, and R2.
 
 <!-- Original screenshot: https://github.com/hyphy-void/Parcel/blob/main/docs/images/new-share-en.png -->
-[![Parcel's New share screen, with browser-encrypted uploads, expiration settings, download limits, and optional password protection.](assets/parcel-new-share.png)](assets/parcel-new-share.png)
+[![Parcel's New share screen, with browser-encrypted uploads, expiration settings, download limits, and optional password protection.](assets/parcel-new-share.webp)](assets/parcel-new-share.webp)
 
 [Repository](https://github.com/hyphy-void/Parcel) ·
 [Deployment guide](https://parcelwiki.pages.dev/) ·
