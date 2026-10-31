@@ -13,19 +13,9 @@ Currently exploring **agent loops, tool calling, and harness design**, while
 contributing to open source. I enjoy building things, breaking things, and
 figuring out how they work.
 
-[Personal website](https://lihaozheng.dev) · [GitHub](https://github.com/hyphy-void)
+[Personal website](https://lihaozheng.dev) · [GitHub](https://github.com/hyphy-void) · [Parcel Wiki](https://parcelwiki.pages.dev/)
 
-## [Parcel](https://github.com/hyphy-void/Parcel)
-
-**End-to-end encrypted file sharing, on your own Cloudflare account.**
-
-Encrypt files in the browser, share a link, and let them expire automatically.
-Resumable transfers, optional passwords, and download limits keep sharing
-practical. Built with React, TypeScript, Cloudflare Workers, D1, and R2.
-
-<!-- Original screenshot: https://github.com/hyphy-void/Parcel/blob/main/docs/images/new-share-en.png -->
-[![Parcel's New share screen, with browser-encrypted uploads, expiration settings, download limits, and optional password protection.](assets/parcel-new-share.webp)](assets/parcel-new-share.webp)
-
-[Repository](https://github.com/hyphy-void/Parcel) ·
-[Deployment guide](https://parcelwiki.pages.dev/) ·
-[Encryption design](https://github.com/hyphy-void/Parcel/blob/main/docs/e2ee-protocol.md)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/hyphy-void/hyphy-void/output/github-contribution-grid-snake-dark.svg">
+  <img src="https://raw.githubusercontent.com/hyphy-void/hyphy-void/output/github-contribution-grid-snake.svg" width="960" alt="Snake animation eating my GitHub contributions.">
+</picture>
