@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="480" height="330" viewBox="0 0 480 330" role="img" aria-labelledby="title desc">
   <title id="title">hyphy-void — Star history</title>
-  <desc id="desc">hyphy-void: 97 current stars across 17 public repositories. The single line shows 97 cumulative recorded star additions from 2026-10-19 through 2026-11-04. Unstars are not subtracted. Includes owned forks and archived repositories; refreshed daily.</desc>
+  <desc id="desc">hyphy-void: 97 current stars across 17 public repositories. The single line shows 97 cumulative recorded star additions from 2026-10-19 through 2026-11-04. Unstars are not subtracted. A smooth curve interpolates daily observations. Includes owned forks and archived repositories; refreshed daily.</desc>
   <rect width="480" height="330" fill="#ffffff"/>
   <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
     <text x="0" y="35" fill="#1f2328" font-size="28" font-weight="600">Star history</text>
@@ -18,7 +18,7 @@
     <text x="36" y="155.50" text-anchor="end" fill="#59636e" font-size="16">75</text>
     <path d="M48 112.00H456" fill="none" stroke="#d8dee4" stroke-width="1"/>
     <text x="36" y="117.00" text-anchor="end" fill="#59636e" font-size="16">100</text>
-    <path d="M48 266.00H73.50V264.46H99.00V262.92H124.50V210.56H150.00V181.30H175.50V167.44H201.00V161.28H226.50V152.04H252.00V139.72H277.50V135.10H303.00V132.02H328.50V128.94H354.00V124.32H379.50V122.78H405.00V116.62H456" fill="none" stroke="#0969da" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M48.00 266.00C56.50 265.49 65.00 264.97 73.50 264.46C82.00 263.95 90.50 263.92 99.00 262.92C107.50 261.92 116.00 223.07 124.50 210.56C133.00 198.05 141.50 187.57 150.00 181.30C158.50 175.03 167.00 170.28 175.50 167.44C184.00 164.60 192.50 163.74 201.00 161.28C209.50 158.82 218.00 155.56 226.50 152.04C235.00 148.52 243.50 141.96 252.00 139.72C260.50 137.48 269.00 136.33 277.50 135.10C286.00 133.87 294.50 133.05 303.00 132.02C311.50 130.99 320.00 130.17 328.50 128.94C337.00 127.71 345.50 125.09 354.00 124.32C362.50 123.55 371.00 123.60 379.50 122.78C388.00 121.96 396.50 116.62 405.00 116.62C413.50 116.62 422.00 116.62 430.50 116.62C439.00 116.62 447.50 116.62 456.00 116.62" fill="none" stroke="#0969da" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="456" cy="116.62" r="4" fill="#0969da"/>
     <text x="48.00" y="294" text-anchor="start" fill="#59636e" font-size="16">Oct 19</text>
     <text x="252.00" y="294" text-anchor="middle" fill="#59636e" font-size="16">Oct 27</text>

@@ -153,6 +153,24 @@ def collect_history(client, owner, today):
     }
 
 
+def smooth_line(points):
+    """Interpolate observations with monotone cubic curves, without overshoot."""
+    slopes = [(yb - ya) / (xb - xa) for (xa, ya), (xb, yb) in zip(points, points[1:])]
+    tangents = [slopes[0]]
+    for before, after in zip(slopes, slopes[1:]):
+        # Flat days stay flat. The harmonic mean limits bends at sudden jumps.
+        tangents.append(0 if before * after <= 0 else 2 * before * after / (before + after))
+    tangents.append(slopes[-1])
+    path = [f"M{points[0][0]:.2f} {points[0][1]:.2f}"]
+    for index, ((xa, ya), (xb, yb)) in enumerate(zip(points, points[1:])):
+        handle = (xb - xa) / 3
+        path.append(
+            f"C{xa + handle:.2f} {ya + tangents[index] * handle:.2f} "
+            f"{xb - handle:.2f} {yb - tangents[index + 1] * handle:.2f} {xb:.2f} {yb:.2f}"
+        )
+    return "".join(path)
+
+
 def render_chart(data, theme, mobile=False):
     background, foreground, muted, accent, grid = PALETTES[theme]
     width, height = (480, 330) if mobile else (960, 360)
@@ -186,6 +204,7 @@ def render_chart(data, theme, mobile=False):
         f"{owner}: {current} current stars across {repo_count} public repositories. "
         f"The single line shows {recorded} cumulative recorded star additions from "
         f"{points[0]['date']} through {data['updated_at']}. Unstars are not subtracted. "
+        "A smooth curve interpolates daily observations. "
         "Includes owned forks and archived repositories; refreshed daily."
     )
     svg = [
@@ -211,16 +230,9 @@ def render_chart(data, theme, mobile=False):
             f'    <text x="{left - 12}" y="{py + 5:.2f}" text-anchor="end" fill="{muted}" font-size="16">{label(value)}</text>',
         ])
 
-    # A daily step line preserves recorded jumps, without inventing smooth growth.
-    line = f"M{left} {y(points[0]['total']):.2f}"
-    previous = points[0]["total"]
-    for point in points[1:]:
-        if point["total"] != previous:
-            line += f"H{x(point['date']):.2f}V{y(point['total']):.2f}"
-            previous = point["total"]
-    line += f"H{right}"
+    line = smooth_line([(x(point["date"]), y(point["total"])) for point in points])
     svg.extend([
-        f'    <path d="{line}" fill="none" stroke="{accent}" stroke-width="2.5" stroke-linejoin="round"/>',
+        f'    <path d="{line}" fill="none" stroke="{accent}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>',
         f'    <circle cx="{right}" cy="{y(recorded):.2f}" r="4" fill="{accent}"/>',
     ])
     tick_count = 3 if mobile else 5
