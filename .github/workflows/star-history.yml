@@ -10,6 +10,7 @@ on:
     paths:
       - .github/workflows/star-history.yml
       - .github/scripts/**
+      - .github/assets/**
 
 permissions:
   contents: write

@@ -11,6 +11,7 @@ API: https://docs.github.com/en/rest/activity/starring#get-repository-star-histo
 """
 
 import argparse
+from base64 import b64encode
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from html import escape
@@ -29,8 +30,8 @@ from urllib.request import Request, urlopen
 API = "https://api.github.com"
 ROOT = Path(__file__).resolve().parents[2]
 PALETTES = {
-    "light": ("#ffffff", "#1f2328", "#59636e", "#0969da", "#d8dee4"),
-    "dark": ("#0d1117", "#e6edf3", "#9198a1", "#58a6ff", "#30363d"),
+    "light": ("#ffffff", "#242424", "#57534e", "#dd4528", "#e5e5e5"),
+    "dark": ("#0d1117", "#f0f0f0", "#b5b5b5", "#ff6b6b", "#30363d"),
 }
 
 
@@ -200,6 +201,10 @@ def render_chart(data, theme, mobile=False):
     repo_count = len(data["repositories"])
     current = data["current_stars"]
     recorded = data["recorded_stars"]
+    # Embedded WOFF works inside GitHub's <img>, without external font requests.
+    # The bundled subset retains its copyright/license font metadata as well.
+    font = b64encode((ROOT / ".github/assets/PatrickHand-ASCII.woff").read_bytes()).decode("ascii")
+    font_license = escape((ROOT / ".github/assets/PatrickHand-OFL.txt").read_text(encoding="utf-8"))
     description = escape(
         f"{owner}: {current} current stars across {repo_count} public repositories. "
         f"The single line shows {recorded} cumulative recorded star additions from "
@@ -211,13 +216,22 @@ def render_chart(data, theme, mobile=False):
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
         f'  <title id="title">{owner} — Star history</title>',
         f'  <desc id="desc">{description}</desc>',
+        f'  <metadata>Patrick Hand by Patrick Wagesreiter. ASCII subset.\n{font_license}</metadata>',
+        '  <defs>',
+        f'    <style type="text/css">@font-face {{ font-family: StarHand; src: url("data:font/woff;base64,{font}") format("woff"); font-weight: 400; font-style: normal; }}</style>',
+        f'    <filter id="sketch" filterUnits="userSpaceOnUse" x="-8" y="-8" width="{width + 16}" height="{height + 16}" color-interpolation-filters="sRGB">',
+        '      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="pencil"/>',
+        '      <feDisplacementMap in="SourceGraphic" in2="pencil" scale="3" xChannelSelector="R" yChannelSelector="G"/>',
+        '    </filter>',
+        '  </defs>',
         f'  <rect width="{width}" height="{height}" fill="{background}"/>',
-        '  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">',
-        f'    <text x="0" y="35" fill="{foreground}" font-size="28" font-weight="600">Star history</text>',
-        f'    <text x="0" y="65" fill="{muted}" font-size="18">All {repo_count} public repositories</text>',
-        f'    <text x="{right}" y="36" text-anchor="end" fill="{accent}" font-size="32" font-weight="600">{current:,}</text>',
-        f'    <text x="{right}" y="65" text-anchor="end" fill="{muted}" font-size="16">stars now</text>',
-        f'    <text x="{left}" y="96" fill="{muted}" font-size="14">Cumulative additions</text>',
+        '  <g font-family="StarHand, cursive" font-weight="400">',
+        f'    <text x="4" y="35" fill="{foreground}" font-size="34">Star history</text>',
+        f'    <path d="M4 59Q13 58 23 59" fill="none" stroke="{accent}" stroke-width="3" stroke-linecap="round" filter="url(#sketch)"/>',
+        f'    <text x="32" y="65" fill="{muted}" font-size="20">All {repo_count} public repositories</text>',
+        f'    <text x="{right}" y="36" text-anchor="end" fill="{accent}" font-size="36">{current:,}</text>',
+        f'    <text x="{right}" y="65" text-anchor="end" fill="{muted}" font-size="18">stars now</text>',
+        f'    <text x="{left}" y="96" fill="{muted}" font-size="17">Cumulative additions</text>',
     ]
     for index in range(math.floor(ceiling / step) + 1):
         value = index * step
@@ -226,14 +240,16 @@ def render_chart(data, theme, mobile=False):
             continue
         py = y(value)
         svg.extend([
-            f'    <path d="M{left} {py:.2f}H{right}" fill="none" stroke="{grid}" stroke-width="1"/>',
-            f'    <text x="{left - 12}" y="{py + 5:.2f}" text-anchor="end" fill="{muted}" font-size="16">{label(value)}</text>',
+            f'    <path d="M{left} {py:.2f}H{right}" fill="none" stroke="{grid}" stroke-width="1" filter="url(#sketch)"/>',
+            f'    <path d="M{left - 4} {py:.2f}H{left}" fill="none" stroke="{foreground}" stroke-width="1.5" filter="url(#sketch)"/>',
+            f'    <text x="{left - 12}" y="{py + 5:.2f}" text-anchor="end" fill="{muted}" font-size="18">{label(value)}</text>',
         ])
 
     line = smooth_line([(x(point["date"]), y(point["total"])) for point in points])
     svg.extend([
-        f'    <path d="{line}" fill="none" stroke="{accent}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>',
-        f'    <circle cx="{right}" cy="{y(recorded):.2f}" r="4" fill="{accent}"/>',
+        f'    <path d="M{left} {top - 2}V{bottom}H{right + 2}" fill="none" stroke="{foreground}" stroke-width="1.6" stroke-linecap="round" filter="url(#sketch)"/>',
+        f'    <path d="{line}" fill="none" stroke="{accent}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" filter="url(#sketch)"/>',
+        f'    <circle cx="{right}" cy="{y(recorded):.2f}" r="3.5" fill="{accent}" filter="url(#sketch)"/>',
     ])
     tick_count = 3 if mobile else 5
     tick_days = sorted({round(duration * index / (tick_count - 1)) for index in range(tick_count)})
@@ -241,10 +257,10 @@ def render_chart(data, theme, mobile=False):
         day = first_day + timedelta(days=offset)
         alignment = "start" if index == 0 else "end" if index == len(tick_days) - 1 else "middle"
         text = day.strftime("%b ") + str(day.day) if duration < 180 else day.strftime("%b %Y")
-        svg.append(f'    <text x="{x(day.isoformat()):.2f}" y="{bottom + 28}" text-anchor="{alignment}" fill="{muted}" font-size="16">{text}</text>')
+        svg.append(f'    <text x="{x(day.isoformat()):.2f}" y="{bottom + 28}" text-anchor="{alignment}" fill="{muted}" font-size="18">{text}</text>')
     svg.extend([
-        f'    <text x="0" y="{height - 8}" fill="{muted}" font-size="14">Updated {data["updated_at"]}</text>',
-        f'    <text x="{right}" y="{height - 8}" text-anchor="end" fill="{muted}" font-size="14">Refreshed daily</text>',
+        f'    <text x="4" y="{height - 8}" fill="{muted}" font-size="16">Updated {data["updated_at"]}</text>',
+        f'    <text x="{right}" y="{height - 8}" text-anchor="end" fill="{muted}" font-size="16">Refreshed daily</text>',
         '  </g>',
         '</svg>',
     ])
