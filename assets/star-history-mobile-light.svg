@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="330" viewBox="0 0 480 330" role="img" aria-labelledby="title desc">
+  <title id="title">hyphy-void — Star history</title>
+  <desc id="desc">hyphy-void: 97 current stars across 17 public repositories. The single line shows 97 cumulative recorded star additions from 2026-10-19 through 2026-11-04. Unstars are not subtracted. Includes owned forks and archived repositories; refreshed daily.</desc>
+  <rect width="480" height="330" fill="#ffffff"/>
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="0" y="35" fill="#1f2328" font-size="28" font-weight="600">Star history</text>
+    <text x="0" y="65" fill="#59636e" font-size="18">All 17 public repositories</text>
+    <text x="456" y="36" text-anchor="end" fill="#0969da" font-size="32" font-weight="600">97</text>
+    <text x="456" y="65" text-anchor="end" fill="#59636e" font-size="16">stars now</text>
+    <text x="48" y="96" fill="#59636e" font-size="14">Cumulative additions</text>
+    <path d="M48 266.00H456" fill="none" stroke="#d8dee4" stroke-width="1"/>
+    <text x="36" y="271.00" text-anchor="end" fill="#59636e" font-size="16">0</text>
+    <path d="M48 227.50H456" fill="none" stroke="#d8dee4" stroke-width="1"/>
+    <text x="36" y="232.50" text-anchor="end" fill="#59636e" font-size="16">25</text>
+    <path d="M48 189.00H456" fill="none" stroke="#d8dee4" stroke-width="1"/>
+    <text x="36" y="194.00" text-anchor="end" fill="#59636e" font-size="16">50</text>
+    <path d="M48 150.50H456" fill="none" stroke="#d8dee4" stroke-width="1"/>
+    <text x="36" y="155.50" text-anchor="end" fill="#59636e" font-size="16">75</text>
+    <path d="M48 112.00H456" fill="none" stroke="#d8dee4" stroke-width="1"/>
+    <text x="36" y="117.00" text-anchor="end" fill="#59636e" font-size="16">100</text>
+    <path d="M48 266.00H73.50V264.46H99.00V262.92H124.50V210.56H150.00V181.30H175.50V167.44H201.00V161.28H226.50V152.04H252.00V139.72H277.50V135.10H303.00V132.02H328.50V128.94H354.00V124.32H379.50V122.78H405.00V116.62H456" fill="none" stroke="#0969da" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="456" cy="116.62" r="4" fill="#0969da"/>
+    <text x="48.00" y="294" text-anchor="start" fill="#59636e" font-size="16">Oct 19</text>
+    <text x="252.00" y="294" text-anchor="middle" fill="#59636e" font-size="16">Oct 27</text>
+    <text x="456.00" y="294" text-anchor="end" fill="#59636e" font-size="16">Nov 4</text>
+    <text x="0" y="322" fill="#59636e" font-size="14">Updated 2026-11-04</text>
+    <text x="456" y="322" text-anchor="end" fill="#59636e" font-size="14">Refreshed daily</text>
+  </g>
+</svg>

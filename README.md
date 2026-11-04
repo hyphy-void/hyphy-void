@@ -19,3 +19,10 @@ figuring out how they work.
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/hyphy-void/hyphy-void/output/github-contribution-grid-snake-dark.svg">
   <img src="https://raw.githubusercontent.com/hyphy-void/hyphy-void/output/github-contribution-grid-snake.svg" width="960" alt="Snake animation eating my GitHub contributions.">
 </picture>
+
+<picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/star-history-mobile-dark.svg">
+  <source media="(max-width: 600px)" srcset="assets/star-history-mobile-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/star-history-dark.svg">
+  <img src="assets/star-history-light.svg" width="960" alt="Combined star history across all my public repositories, updated daily.">
+</picture>
